@@ -1,0 +1,69 @@
+/* Custom styles for the Saping Foundation website */
+
+/* Font settings */
+body {
+    font-family: 'Questrial', sans-serif;
+}
+
+h1, h2, h5, h6 {
+    font-family: 'Montserrat', sans-serif;
+}
+
+/* Header styling */
+#navbar {
+    background-color: #fffb03; /* Dark Blue */
+    transition: all 0.3s ease;
+}
+
+#logo-area img {
+    height: 90px;
+}
+
+/* Section background colors with brighter shades */
+.section-education {
+    background-color: #e8f4ff;
+    color: #000000;
+}
+
+/* Styling for the Donate button */
+.btn-donate {
+    background-color: #FFA500;
+    color: #fff;
+    font-weight: 700;
+    border-radius: 5px;
+    padding: 10px 20px;
+    font-size: 16px;
+    text-transform: uppercase;
+    border: none;
+}
+
+.btn-donate:hover {
+    background-color: #FF8C00;
+    color: #fff;
+}
+
+/* Card styling */
+.card {
+    margin-bottom: 1.5rem;
+}
+
+.card-body h5 {
+    font-weight: bold;
+}
+
+.progress-bar {
+    transition: width 0.4s ease;
+}
+
+/* Footer styling */
+footer {
+    background-color: #071952;
+}
+
+footer a {
+    color: #ffffff;
+}
+
+footer a:hover {
+    color: #f39c12;
+}

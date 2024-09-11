@@ -1,0 +1,152 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Saping Foundation</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Questrial&display=swap" rel="stylesheet">
+    <link href="{% static 'styles.css' %}" rel="stylesheet"> <!-- Custom CSS -->
+</head>
+<body>
+
+<!-- Navigation -->
+<nav id="navbar" class="navbar navbar-expand-lg navbar-light sticky-top">
+    <div class="container d-flex justify-content-between align-items-center">
+        <div id="logo-area" class="d-flex align-items-center">
+            <img src="{% static 'images/saping_logo.png' %}" alt="Logo" class="me-2">
+            <h1 class="mb-0">
+                <span class="font-bold">Saping</span>
+                <span class="font-normal">Foundation</span>
+            </h1>
+        </div>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link text-white active" href="#home">Home</a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        About Us
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <li><a class="dropdown-item" href="#">Team in Nepal</a></li>
+                        <li><a class="dropdown-item" href="#">Team in the Netherlands</a></li>
+                        <li><a class="dropdown-item" href="#">Members Around the World</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#programs">Programs</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#work-in-progress">Work in Progress</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#volunteers">Volunteers</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link btn btn-donate text-white ms-2" href="#donate">Donate</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#contact">Contact Us</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<!-- Home Section -->
+<section id="home" class="container-fluid section-education p-0">
+    <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-indicators">
+            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+        </div>
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <img src="{% static 'images/saping_view.jpg' %}" class="d-block w-100" alt="Saping Village">
+                <div class="carousel-caption d-none d-md-block">
+                    <h5>Empowering Through Education</h5>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <img src="{% static 'images/pallopatti.jpg' %}" class="d-block w-100" alt="...">
+                <div class="carousel-caption d-none d-md-block">
+                    <h5>Supporting Sustainable Agriculture</h5>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <img src="{% static 'images/saping_khet.jpg' %}" class="d-block w-100" alt="...">
+                <div class="carousel-caption d-none d-md-block">
+                    <h5>Promoting Responsible Tourism</h5>
+                </div>
+            </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
+    </div>
+</section>
+
+<!-- Work in Progress Section -->
+<section id="work-in-progress" class="container-fluid section-education p-5">
+    <div class="row">
+        <div class="col-md-12 text-center">
+            <h2>Work in Progress</h2>
+            <p>We are working on several exciting projects to improve our village. Here's a look at what's currently underway.</p>
+        </div>
+    </div>
+    <div class="row mt-4">
+        {% for project in projects %}
+        <div class="col-md-4">
+            <div class="card border-0">
+                <div class="card-body">
+                    <h5 class="card-title">{{ project.title }}</h5>
+                    <p class="card-text">{{ project.description }}</p>
+                    <div class="progress mb-2">
+                        <div class="progress-bar bg-success" role="progressbar" style="width: {{ project.progress_percentage }}%;" aria-valuenow="{{ project.progress_percentage }}" aria-valuemin="0" aria-valuemax="100">{{ project.progress_percentage }}%</div>
+                    </div>
+                    <p><strong>€{{ project.amount_raised }}</strong> raised of <strong>€{{ project.target_amount }}</strong></p>
+                    <a href="#" class="btn btn-donate">Donate</a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</section>
+
+<!-- Footer -->
+<footer class="bg-dark text-white">
+    <div class="container py-4">
+        <div class="row">
+            <div class="col-md-6">
+                <h5>Saping Foundation</h5>
+                <p>Empowering the village through Education, Agriculture, and Tourism.</p>
+            </div>
+            <div class="col-md-6 text-md-end">
+                <h5>Follow Us</h5>
+                <a href="#" class="text-white me-2"><i class="fa-brands fa-facebook fa-lg"></i></a>
+                <a href="#" class="text-white me-2"><i class="fa-brands fa-twitter fa-lg"></i></a>
+                <a href="#" class="text-white me-2"><i class="fa-brands fa-instagram fa-lg"></i></a>
+                <a href="#" class="text-white"><i class="fa-brands fa-linkedin fa-lg"></i></a>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="{% static 'scripts.js' %}"></script> <!-- Custom JavaScript -->
+</body>
+</html>

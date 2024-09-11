@@ -1,0 +1,168 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Team in Nepal - Saping Foundation</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Questrial&display=swap" rel="stylesheet">
+    <link href="{% static 'styles.css' %}" rel="stylesheet"> <!-- Custom CSS -->
+</head>
+<body>
+
+<!-- Navigation -->
+<nav id="navbar" class="navbar navbar-expand-lg navbar-light sticky-top">
+    <div class="container d-flex justify-content-between align-items-center">
+        <div id="logo-area" class="d-flex align-items-center">
+            <img src="{% static 'images/saping_logo.png' %}" alt="Logo" class="me-2">
+            <h1 class="mb-0">
+                <span class="font-bold">Saping</span>
+                <span class="font-normal">Foundation</span>
+            </h1>
+        </div>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'index' %}#home">Home</a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle active" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        About Us
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <li><a class="dropdown-item active" href="{% url 'team_nepal' %}">Team in Nepal</a></li>
+                        <li><a class="dropdown-item" href="#">Team in the Netherlands</a></li>
+                        <li><a class="dropdown-item" href="#">Members Around the World</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'index' %}#programs">Programs</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'index' %}#work-in-progress">Work in Progress</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'index' %}#volunteers">Volunteers</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link btn btn-donate text-white ms-2" href="{% url 'index' %}#donate">Donate</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'index' %}#contact">Contact Us</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<!-- Team in Nepal Section -->
+<section id="team_nepal" class="container-fluid section-tourism p-5">
+    <div class="row">
+        <div class="col-md-12 text-center">
+            <h2>Team in Nepal</h2>
+            <p>Meet the dedicated team members of Saping Foundation in Nepal.</p>
+        </div>
+    </div>
+
+    <div class="row mt-4">
+        {% for member in team_members %}
+        <div class="col-md-6">
+            <div class="card border-0 p-3">
+                <div class="row">
+                    <div class="col-md-4 text-center">
+                        <img src="{{ member.image.url }}" class="rounded-circle mb-3" alt="{{ member.role }}">
+                        <h5>{{ member.name }}</h5>
+                        <p>{{ member.role }}</p>
+                        <div class="social-icons">
+                            {% if member.facebook %}
+                            <a href="{{ member.facebook }}" class="text-dark me-2"><i class="fa-brands fa-facebook fa-lg"></i></a>
+                            {% endif %}
+                            {% if member.twitter %}
+                            <a href="{{ member.twitter }}" class="text-dark me-2"><i class="fa-brands fa-twitter fa-lg"></i></a>
+                            {% endif %}
+                            {% if member.linkedin %}
+                            <a href="{{ member.linkedin }}" class="text-dark"><i class="fa-brands fa-linkedin fa-lg"></i></a>
+                            {% endif %}
+                        </div>
+                    </div>
+                    <div class="col-md-8">
+                        <p>{{ member.description }}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</section>
+
+<!-- Example Google Map API Section -->
+<section id="map" class="container-fluid section-education p-5">
+    <div class="map-container">
+        <h2 class="text-center">Our Location</h2>
+        <p class="text-center">Find us on the map below.</p>
+        <div id="map-container" style="height: 400px;">
+            <!-- Google Map API for Saping, Nepal -->
+            <iframe
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d70606.2862638705!2d86.52345167527708!3d27.58815670000001!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39e65a7204cde4c7%3A0xa40e9dffdf8c9d0!2sSaping%2C%20Nepal!5e0!3m2!1sen!2sus!4v1692345678901!5m2!1sen!2sus"
+                width="100%"
+                height="100%"
+                style="border:0;"
+                allowfullscreen=""
+                loading="lazy"></iframe>
+                <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d7068.0591933610585!2d85.741026!3d27.654556!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39eba5645e86ecd3%3A0x7cace8715c3caf02!2sSaping%20Youth%20Club!5e0!3m2!1sen!2snl!4v1718126513745!5m2!1sen!2snl"
+                width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </div>
+    </div>
+</section>
+
+<!-- Contact Us Section -->
+<section id="contact" class="container-fluid section-education p-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6 text-center">
+            <h2>Contact Us</h2>
+            <p>We would love to hear from you. Reach out to us with any questions or to learn more about how you can help.</p>
+            <form>
+                <div class="mb-3">
+                    <input type="text" class="form-control" placeholder="Your Name">
+                </div>
+                <div class="mb-3">
+                    <input type="email" class="form-control" placeholder="Your Email">
+                </div>
+                <div class="mb-3">
+                    <textarea class="form-control" rows="4" placeholder="Your Message"></textarea>
+                </div>
+                <button type="submit" class="btn btn-donate">Send Message</button>
+            </form>
+        </div>
+    </div>
+</section>
+
+<!-- Footer -->
+<footer class="bg-dark text-white">
+    <div class="container py-4">
+        <div class="row">
+            <div class="col-md-6">
+                <h5>Saping Foundation</h5>
+                <p>Empowering the village through Education, Agriculture, and Tourism.</p>
+            </div>
+            <div class="col-md-6 text-md-end">
+                <h5>Follow Us</h5>
+                <a href="#" class="text-white me-2"><i class="fa-brands fa-facebook fa-lg"></i></a>
+                <a href="#" class="text-white me-2"><i class="fa-brands fa-twitter fa-lg"></i></a>
+                <a href="#" class="text-white me-2"><i class="fa-brands fa-instagram fa-lg"></i></a>
+                <a href="#" class="text-white"><i class="fa-brands fa-linkedin fa-lg"></i></a>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="{% static 'scripts.js' %}"></script> <!-- Custom JavaScript -->
+</body>
+</html>
